@@ -56,4 +56,6 @@ public class Melon {
     public void setListName(ArrayList<String> listName) {
         this.listName = listName;
     }
+
+    
 }
