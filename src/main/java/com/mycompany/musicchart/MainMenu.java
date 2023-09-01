@@ -50,7 +50,6 @@ public class MainMenu extends javax.swing.JFrame {
 
         jLabel2.setText("제목");
 
-        jTextField2.setText("Title");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -87,7 +86,6 @@ public class MainMenu extends javax.swing.JFrame {
 
         jLabel1.setText("가수");
 
-        jTextField1.setText("Singer");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -139,10 +137,11 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButton1)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -162,6 +161,7 @@ public class MainMenu extends javax.swing.JFrame {
         DefaultTableModel dtm;
         JTable table;
         Object[][] rowData = new Object[50][3];
+        
         for(int i = 0; i < 50; i++) {
             for(int j = 0; j < 3; j++) {
                 if(j == 0) {
@@ -256,17 +256,32 @@ public class MainMenu extends javax.swing.JFrame {
         Object[][] rowData = new Object[50][3];
         int j = 0;
         
-        if(str1 != null) {
-            for(int i=0;i<50;i++){
-                if(rg.getListTitle().get(i).contains(str1)){
-                   rowData[j][0] = i+1;
-                   rowData[j][1] = rg.getListTitle().get(i);
-                   rowData[j][2] = rg.getListName().get(i);
-                   j++;
-                }   
+        // 이 부분 바꾸기
+        System.out.println("str1  =  " + str1.isEmpty());
+        if(str1.isEmpty() == false){
+            if(str2.isEmpty() == false) {
+                for(int i=0;i<50;i++){
+                    if(rg.getListTitle().get(i).contains(str1)){
+                       rowData[j][0] = i+1;
+                       rowData[j][1] = rg.getListTitle().get(i);
+                       rowData[j][2] = rg.getListName().get(i);
+                       j++;
+                    }   
+                }
             }
-        }
-            else{
+            else {
+                for(int i=0;i<50;i++){
+                    if(rg.getListTitle().get(i).contains(str1)){
+                       rowData[j][0] = i+1;
+                       rowData[j][1] = rg.getListTitle().get(i);
+                       rowData[j][2] = rg.getListName().get(i);
+                       j++;
+                    }   
+                }
+            }
+        } 
+        else if(str2.isEmpty()==false){
+            if(str1.isEmpty()) {
                 for(int i=0;i<50;i++){
                     if(rg.getListName().get(i).contains(str2)){
                        rowData[j][0] = i+1;
@@ -276,6 +291,33 @@ public class MainMenu extends javax.swing.JFrame {
                     }   
                 }
             }
+//            else {
+//                for(int i=0;i<50;i++){
+//                    if(rg.getListName().get(i).contains(str2)){
+//                       rowData[j][0] = i+1;
+//                       rowData[j][1] = rg.getListTitle().get(i);
+//                       rowData[j][2] = rg.getListName().get(i);
+//                       j++;
+//                    }   
+//                }
+//            }
+        }
+            
+            
+       /* if(str1 != null && str2 != null) {
+            rowData[0][0] = "0";
+            rowData[0][1] = "0";
+            rowData[0][2] = "0";
+            for(int i=0;i<50;i++){
+                if(rg.getListTitle().get(i).contains(str1)){
+                   rowData[j][0] = i+1;
+                   rowData[j][1] = rg.getListTitle().get(i);
+                   rowData[j][2] = rg.getListName().get(i);
+                   j++;
+                }   
+            }
+        }*/
+       
         
         String[] columTitle = {"Rank","Title","Name"};
         dtm = new DefaultTableModel(rowData,columTitle);
