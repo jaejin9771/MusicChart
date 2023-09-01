@@ -30,23 +30,23 @@ public class MainMenu extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         SearchMelon = new javax.swing.JButton();
         SearchGenie = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3"
             }
         ));
         jTable1.setToolTipText("");
         jTable1.setCellSelectionEnabled(true);
         jScrollPane1.setViewportView(jTable1);
+        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         jLabel2.setText("제목");
 
@@ -85,6 +85,15 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("가수");
+
+        jTextField1.setText("Singer");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,37 +102,47 @@ public class MainMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                                .addComponent(jButton3)))
+                        .addGap(47, 47, 47))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                        .addComponent(jButton3)))
-                .addGap(47, 47, 47))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(176, 176, 176)
-                .addComponent(jLabel2)
-                .addGap(164, 164, 164)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(SearchMelon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(SearchGenie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel2)
+                        .addGap(106, 106, 106)
+                        .addComponent(jLabel1)
+                        .addGap(190, 190, 190)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(SearchMelon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(SearchGenie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(SearchMelon))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(SearchMelon))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
+                            .addComponent(jButton1)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -199,15 +218,27 @@ public class MainMenu extends javax.swing.JFrame {
         String str = jTextField2.getText();
         DefaultTableModel dtm;
         JTable table;
-        Object[][] rowData = new Object[1][3];
+        Object[][] rowData = new Object[50][3];
+        int j = 0;
         
         for(int i=0;i<50;i++){
-            if(str.equals(rm.getListTitle().get(i))){
-               rowData[0][0] = i+1;
-               rowData[0][1] = rm.getListTitle().get(i);
-               rowData[0][2] = rm.getListName().get(i);
+            if(rm.getListTitle().get(i).contains(str)){
+               rowData[j][0] = i+1;
+               rowData[j][1] = rm.getListTitle().get(i);
+               rowData[j][2] = rm.getListName().get(i);
+               j++;
             }   
         }
+        
+        for(int i=0;i<50;i++){
+            if(rm.getListName().get(i).contains(str)){
+               rowData[j][0] = i+1;
+               rowData[j][1] = rm.getListTitle().get(i);
+               rowData[j][2] = rm.getListName().get(i);
+               j++;
+            }   
+        }
+        
         String[] columTitle = {"Rank","Title","Name"};
         dtm = new DefaultTableModel(rowData,columTitle);
         
@@ -217,18 +248,35 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_SearchMelonActionPerformed
 
     private void SearchGenieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchGenieActionPerformed
-        String str = jTextField2.getText();
+        String str1 = jTextField2.getText();
+        String str2 = jTextField1.getText();
+        
         DefaultTableModel dtm;
         JTable table;
-        Object[][] rowData = new Object[1][3];
+        Object[][] rowData = new Object[50][3];
+        int j = 0;
         
-        for(int i=0;i<50;i++){
-            if(str.equals(rg.getListTitle().get(i))){
-               rowData[0][0] = i+1;
-               rowData[0][1] = rg.getListTitle().get(i);
-               rowData[0][2] = rg.getListName().get(i);
-            }   
+        if(str1 != null) {
+            for(int i=0;i<50;i++){
+                if(rg.getListTitle().get(i).contains(str1)){
+                   rowData[j][0] = i+1;
+                   rowData[j][1] = rg.getListTitle().get(i);
+                   rowData[j][2] = rg.getListName().get(i);
+                   j++;
+                }   
+            }
         }
+            else{
+                for(int i=0;i<50;i++){
+                    if(rg.getListName().get(i).contains(str2)){
+                       rowData[j][0] = i+1;
+                       rowData[j][1] = rg.getListTitle().get(i);
+                       rowData[j][2] = rg.getListName().get(i);
+                       j++;
+                    }   
+                }
+            }
+        
         String[] columTitle = {"Rank","Title","Name"};
         dtm = new DefaultTableModel(rowData,columTitle);
         
@@ -236,6 +284,10 @@ public class MainMenu extends javax.swing.JFrame {
         
         jTable1.setModel(dtm);
     }//GEN-LAST:event_SearchGenieActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -277,9 +329,11 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton SearchMelon;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
