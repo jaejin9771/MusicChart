@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.musicchart;
 
 import java.util.ArrayList;
@@ -10,19 +6,24 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-/**
- *
- * @author 성명주
- */
-public class Melon {
+public class Chart {
     ArrayList<String> listTitle;
     ArrayList<String> listName;
-    public Melon() {
-        String url = "https://www.melon.com/chart/index.htm";
+    
+    public Chart() { }
+    
+    public Chart(String URL1, String URL2, String URL3) {
+        // URL1 = 음악차트 주소
+        // URL2 = 제목 가져오기 위한 문장
+        // URL3 = 가수 가져오기 위한 문장
+        String charturl = URL1;
+        String titleurl = URL2;
+        String singerurl = URL3;
+        
         Document doc = null;
         
         try {
-            doc = Jsoup.connect(url).get();
+            doc = Jsoup.connect(charturl).get();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -30,8 +31,8 @@ public class Melon {
         listTitle = new ArrayList<>();
         listName = new ArrayList<>();
         
-        Elements rank_list = doc.select("div.wrap_song_info div.ellipsis.rank01 span a");
-        Elements rank_list_name = doc.select("div.wrap_song_info div.ellipsis.rank02 span a");
+        Elements rank_list = doc.select(titleurl);
+        Elements rank_list_name = doc.select(singerurl);
         
         for(Element a : rank_list) {
             listTitle.add(a.text());
@@ -56,6 +57,4 @@ public class Melon {
     public void setListName(ArrayList<String> listName) {
         this.listName = listName;
     }
-
-    
 }

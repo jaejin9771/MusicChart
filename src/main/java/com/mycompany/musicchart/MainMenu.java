@@ -4,8 +4,8 @@ import javax.swing.JTable;
 import javax.swing.table.*;
 
 public class MainMenu extends javax.swing.JFrame {
-    Genie rg = new Genie(); // 크롤링을 한번 요청하고 객체에 저장해 계속 정보를 씀
-    Melon rm = new Melon();
+    Chart rg = new Chart("https://www.genie.co.kr/chart/top200", "td.info a.title.ellipsis", "td.info a.artist.ellipsis"); // 크롤링을 한번 요청하고 객체에 저장해 계속 정보를 씀
+    Chart rm = new Chart("https://www.melon.com/chart/index.htm", "div.wrap_song_info div.ellipsis.rank01 span a", "div.wrap_song_info div.ellipsis.rank02 span a");
     /**
      * Creates new form MainMenu
      */
@@ -40,13 +40,25 @@ public class MainMenu extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3"
+                "순위", "제목", "가수"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jTable1.setToolTipText("");
         jTable1.setCellSelectionEnabled(true);
         jScrollPane1.setViewportView(jTable1);
         jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setMinWidth(5);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(5);
+        }
 
         jLabel2.setText("제목");
 
@@ -176,6 +188,7 @@ public class MainMenu extends javax.swing.JFrame {
                 }
             }
         }
+        
         String[] columTitle = {"순위" , "노래", "가수" };
         dtm = new DefaultTableModel(rowData, columTitle);
         
