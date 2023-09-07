@@ -8,7 +8,7 @@ import javax.swing.table.*;
 public class MainMenu extends javax.swing.JFrame {
     Chart rg = new Chart("https://www.genie.co.kr/chart/top200", "td.info a.title.ellipsis", "td.info a.artist.ellipsis"); // 크롤링을 한번 요청하고 객체에 저장해 계속 정보를 씀
     Chart rm = new Chart("https://www.melon.com/chart/index.htm", "div.wrap_song_info div.ellipsis.rank01 span a", "div.wrap_song_info div.ellipsis.rank02 span a");
-    DefaultTableModel dtm;
+    DefaultTableModel dtm; 
     JTable table;
     Object[][] rowData = new Object[50][3];
     String[] columTitle = {"순위","제목","가수"};
