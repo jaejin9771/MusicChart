@@ -7,6 +7,9 @@ import javax.swing.table.*;
 public class MainMenu extends javax.swing.JFrame {
     Chart rg = new Chart("https://www.genie.co.kr/chart/top200", "td.info a.title.ellipsis", "td.info a.artist.ellipsis"); // 크롤링을 한번 요청하고 객체에 저장해 계속 정보를 씀
     Chart rm = new Chart("https://www.melon.com/chart/index.htm", "div.wrap_song_info div.ellipsis.rank01 span a", "div.wrap_song_info div.ellipsis.rank02 span a");
+    DefaultTableModel dtm ;
+    JTable table;
+    Object[][] rowData = new Object[50][3];
     /**
      * Creates new form MainMenu
      */
@@ -171,22 +174,11 @@ public class MainMenu extends javax.swing.JFrame {
     private void MelonChartActionPerformed(java.awt.event.ActionEvent evt) {                                           
         //멜론차트 1~50 표시
         //1~50위 표시하는 함수 만들기
-        DefaultTableModel dtm;
-        JTable table;
-        Object[][] rowData = new Object[50][3];
         
         for(int i = 0; i < rowData.length; i++) {
-            for(int j = 0; j < rowData[i].length; j++) {
-                if(j == 0) {
-                    rowData[i][j] = i + 1;
-                }
-                else if(j == 1) {
-                    rowData[i][j] = rm.getListTitle().get(i);
-                }
-                else {
-                    rowData[i][j] = rm.getListName().get(i);
-                }
-            }
+            rowData[i][0] = i + 1;
+            rowData[i][1] = rm.getListTitle().get(i);
+            rowData[i][2] = rm.getListName().get(i);
         }
         
         String[] columTitle = {"순위" , "노래", "가수" };
@@ -200,21 +192,11 @@ public class MainMenu extends javax.swing.JFrame {
     private void GenieChartActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // 지니뮤직 차트 1~50등 표시
         //1~50위 표시하는 함수 만들기
-        DefaultTableModel dtm;
-        JTable table;
-        Object[][] rowData = new Object[50][3];
+        
         for(int i = 0; i < rowData.length; i++) {
-            for(int j = 0; j < rowData[0].length; j++) {
-                if(j == 0) {
-                    rowData[i][j] = i + 1;
-                }
-                else if(j == 1) {
-                    rowData[i][j] = rg.getListTitle().get(i);
-                }
-                else {
-                    rowData[i][j] = rg.getListName().get(i);
-                }
-            }
+            rowData[i][0] = i + 1;
+            rowData[i][1] = rg.getListTitle().get(i);
+            rowData[i][2] = rg.getListName().get(i);
         }
         String[] columTitle = {"순위" , "노래", "가수" };
         dtm = new DefaultTableModel(rowData, columTitle);
@@ -232,11 +214,7 @@ public class MainMenu extends javax.swing.JFrame {
         //멜론차트에서 검색하기
         String str1 = TextSong.getText();
         String str2 = TextSinger.getText();
-        int or = 50;
-        int oc = 3;
-        DefaultTableModel dtm;
-        JTable table;
-        Object[][] rowData = new Object[or][oc];
+
         int j = 0;
         
         // 이 부분 바꾸기
@@ -287,10 +265,7 @@ public class MainMenu extends javax.swing.JFrame {
         //지니뮤직에서 검색하기
         String str1 = TextSong.getText();
         String str2 = TextSinger.getText();
-        
-        DefaultTableModel dtm;
-        JTable table;
-        Object[][] rowData = new Object[50][3]; //상수 부분을 변수로 교체해주기, 코드 보수 편리함
+         //상수 부분을 변수로 교체해주기, 코드 보수 편리함
         int j = 0;
         
         // 이 부분 바꾸기
