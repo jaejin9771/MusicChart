@@ -1,4 +1,4 @@
-package com.mycompany.musicchart;
+package com.mycompany.musicchart.model;
 
 import java.util.ArrayList;
 import org.jsoup.Jsoup;
@@ -16,14 +16,14 @@ public class Chart {
         // URL1 = 음악차트 주소
         // URL2 = 제목 가져오기 위한 문장
         // URL3 = 가수 가져오기 위한 문장
-        String charturl = URL1;
-        String titleurl = URL2;
-        String singerurl = URL3;
+        String chartUrl = URL1;
+        String titleUrl = URL2;
+        String singerUrl = URL3;
         
         Document doc = null;
         
         try {
-            doc = Jsoup.connect(charturl).get();
+            doc = Jsoup.connect(chartUrl).get();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -31,8 +31,8 @@ public class Chart {
         listTitle = new ArrayList<>();
         listName = new ArrayList<>();
         
-        Elements rank_list = doc.select(titleurl);
-        Elements rank_list_name = doc.select(singerurl);
+        Elements rank_list = doc.select(titleUrl);
+        Elements rank_list_name = doc.select(singerUrl);
         
         for(Element a : rank_list) {
             listTitle.add(a.text());
