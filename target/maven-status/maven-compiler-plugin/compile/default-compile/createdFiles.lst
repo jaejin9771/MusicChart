@@ -3,6 +3,7 @@ com\mycompany\musicchart\view\MainMenu$2.class
 com\mycompany\musicchart\model\Chart.class
 com\mycompany\musicchart\view\MainMenu$5.class
 com\mycompany\musicchart\view\MainMenu.class
+com\mycompany\musicchart\controller\Search.class
 com\mycompany\musicchart\view\MainMenu$7.class
 com\mycompany\musicchart\MusicChart.class
 com\mycompany\musicchart\view\MainMenu$3.class

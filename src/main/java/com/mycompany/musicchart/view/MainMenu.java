@@ -1,5 +1,6 @@
 package com.mycompany.musicchart.view;
 
+import static com.mycompany.musicchart.controller.Search.MusicSearch;
 import com.mycompany.musicchart.model.Chart;
 import javax.swing.JTable;
 import javax.swing.table.*;
@@ -7,9 +8,12 @@ import javax.swing.table.*;
 public class MainMenu extends javax.swing.JFrame {
     Chart rg = new Chart("https://www.genie.co.kr/chart/top200", "td.info a.title.ellipsis", "td.info a.artist.ellipsis"); // 크롤링을 한번 요청하고 객체에 저장해 계속 정보를 씀
     Chart rm = new Chart("https://www.melon.com/chart/index.htm", "div.wrap_song_info div.ellipsis.rank01 span a", "div.wrap_song_info div.ellipsis.rank02 span a");
-    DefaultTableModel dtm ;
+    DefaultTableModel dtm;
     JTable table;
     Object[][] rowData = new Object[50][3];
+    String[] columTitle = {"순위","제목","가수"};
+    int ROW = 50;
+    int COL = 3;
     /**
      * Creates new form MainMenu
      */
@@ -176,12 +180,11 @@ public class MainMenu extends javax.swing.JFrame {
         //1~50위 표시하는 함수 만들기
         
         for(int i = 0; i < rowData.length; i++) {
-            rowData[i][0] = i + 1;
-            rowData[i][1] = rm.getListTitle().get(i);
-            rowData[i][2] = rm.getListName().get(i);
+            int colnum = 0;
+            rowData[i][colnum] = i + 1;
+            rowData[i][++colnum] = rm.getListTitle().get(i);
+            rowData[i][++colnum] = rm.getListName().get(i);
         }
-        
-        String[] columTitle = {"순위" , "노래", "가수" };
         dtm = new DefaultTableModel(rowData, columTitle);
          
         table = new JTable(dtm);
@@ -193,12 +196,13 @@ public class MainMenu extends javax.swing.JFrame {
         // 지니뮤직 차트 1~50등 표시
         //1~50위 표시하는 함수 만들기
         
-        for(int i = 0; i < rowData.length; i++) {
-            rowData[i][0] = i + 1;
-            rowData[i][1] = rg.getListTitle().get(i);
-            rowData[i][2] = rg.getListName().get(i);
+        for(int i = 0; i < rowData.length; i++) {             
+            int colnum = 0;
+            rowData[i][colnum] = i + 1;
+            rowData[i][++colnum] = rg.getListTitle().get(i);
+            rowData[i][++colnum] = rg.getListName().get(i);
         }
-        String[] columTitle = {"순위" , "노래", "가수" };
+        
         dtm = new DefaultTableModel(rowData, columTitle);
         
         table = new JTable(dtm);
@@ -212,58 +216,24 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void SearchMelonActionPerformed(java.awt.event.ActionEvent evt) {                                            
         //멜론차트에서 검색하기
+        rowData = new Object[ROW][COL];
         String str1 = TextSong.getText();
         String str2 = TextSinger.getText();
 
         int j = 0;
-        if(dtm != null){
-            for(int i=0;i<rowData.length;i++) {
-            dtm.removeRow(i);
-            }
-        }
-        // 이 부분 바꾸기
-        if(str1.isEmpty() == false){        // 아래 부분들 함수로 바꿔서 깔끔하게 바꾸기
-            if(str2.isEmpty() == false) {
-                for(int i=0;i<rowData.length;i++){
-                    if(rm.getListTitle().get(i).contains(str1)){
-                       rowData[j][0] = i+1;
-                       rowData[j][1] = rm.getListTitle().get(i);
-                       rowData[j][2] = rm.getListName().get(i);
-                       j++;
-                    }   
-                }
-            }
-            else {
-                for(int i=0;i<rowData.length;i++){
-                    if(rm.getListTitle().get(i).contains(str1)){
-                       rowData[j][0] = i+1;
-                       rowData[j][1] = rm.getListTitle().get(i);
-                       rowData[j][2] = rm.getListName().get(i);
-                       j++;
-                    }   
-                }
-            }
-        } 
-        else if(str2.isEmpty()==false){
-            if(str1.isEmpty()) {
-                for(int i=0;i<rowData.length;i++){
-                    if(rm.getListName().get(i).contains(str2)){
-                       rowData[j][0] = i+1;
-                       rowData[j][1] = rm.getListTitle().get(i);
-                       rowData[j][2] = rm.getListName().get(i);
-                       j++;
-                    }   
-                }
-            }          
-        }
- 
-        for (Object[] rowData1 : rowData) {
-            dtm.addRow(rowData1);
-        }
+        
+        rowData = MusicSearch(rowData,str1,str2,rm);
+        
+        dtm = new DefaultTableModel(rowData,columTitle);
+        
+        table = new JTable(dtm);
+        
+        jTable1.setModel(dtm);
     }                                           
 
     private void SearchGenieActionPerformed(java.awt.event.ActionEvent evt) {                                            
         //지니뮤직에서 검색하기
+        rowData = new Object[ROW][COL];
         String str1 = TextSong.getText();
         String str2 = TextSinger.getText();
          //상수 부분을 변수로 교체해주기, 코드 보수 편리함
@@ -271,42 +241,8 @@ public class MainMenu extends javax.swing.JFrame {
         
         // 이 부분 바꾸기
         System.out.println("str1  =  " + str1.isEmpty());
-        if(str1.isEmpty() == false){
-            if(str2.isEmpty() == false) {
-                for(int i=0;i<rowData.length;i++){
-                    if(rg.getListTitle().get(i).contains(str1)){
-                       rowData[j][0] = i+1;
-                       rowData[j][1] = rg.getListTitle().get(i);
-                       rowData[j][2] = rg.getListName().get(i);
-                       j++;
-                    }   
-                }
-            }
-            else {
-                for(int i=0;i<rowData.length;i++){
-                    if(rg.getListTitle().get(i).contains(str1)){
-                       rowData[j][0] = i+1;
-                       rowData[j][1] = rg.getListTitle().get(i);
-                       rowData[j][2] = rg.getListName().get(i);
-                       j++;
-                    }   
-                }
-            }
-        } 
-        else if(str2.isEmpty()==false){
-            if(str1.isEmpty()) {
-                for(int i=0;i<rowData.length;i++){
-                    if(rg.getListName().get(i).contains(str2)){
-                       rowData[j][0] = i+1;
-                       rowData[j][1] = rg.getListTitle().get(i);
-                       rowData[j][2] = rg.getListName().get(i);
-                       j++;
-                    }   
-                }
-            }          
-        }
- 
-        String[] columTitle = {"순위","제목","가수"};
+        
+        rowData = MusicSearch(rowData,str1,str2,rg);
         dtm = new DefaultTableModel(rowData,columTitle);
         
         table = new JTable(dtm);
@@ -321,6 +257,7 @@ public class MainMenu extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    
     public void runMusicChart() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -352,7 +289,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
     }
-
+    
     // Variables declaration - do not modify                     
     private javax.swing.JButton GenieChart;
     private javax.swing.JButton MelonChart;
