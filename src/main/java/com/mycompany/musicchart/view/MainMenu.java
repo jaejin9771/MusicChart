@@ -183,7 +183,7 @@ public class MainMenu extends javax.swing.JFrame {
         
         String[] columTitle = {"순위" , "노래", "가수" };
         dtm = new DefaultTableModel(rowData, columTitle);
-        
+         
         table = new JTable(dtm);
         
         jTable1.setModel(dtm);
@@ -216,7 +216,11 @@ public class MainMenu extends javax.swing.JFrame {
         String str2 = TextSinger.getText();
 
         int j = 0;
-        
+        if(dtm != null){
+            for(int i=0;i<rowData.length;i++) {
+            dtm.removeRow(i);
+            }
+        }
         // 이 부분 바꾸기
         if(str1.isEmpty() == false){        // 아래 부분들 함수로 바꿔서 깔끔하게 바꾸기
             if(str2.isEmpty() == false) {
@@ -253,12 +257,9 @@ public class MainMenu extends javax.swing.JFrame {
             }          
         }
  
-        String[] columTitle = {"순위","제목","가수"};
-        dtm = new DefaultTableModel(rowData,columTitle);
-        
-        table = new JTable(dtm);
-        
-        jTable1.setModel(dtm);
+        for (Object[] rowData1 : rowData) {
+            dtm.addRow(rowData1);
+        }
     }                                           
 
     private void SearchGenieActionPerformed(java.awt.event.ActionEvent evt) {                                            
