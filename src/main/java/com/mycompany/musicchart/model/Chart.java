@@ -10,15 +10,11 @@ public class Chart {
     ArrayList<String> listTitle;
     ArrayList<String> listName;
     
-    public Chart() { }
+    public Chart() {
+        
+    }
     
-    public Chart(String URL1, String URL2, String URL3) {
-        // URL1 = 음악차트 주소
-        // URL2 = 제목 가져오기 위한 문장
-        // URL3 = 가수 가져오기 위한 문장
-        String chartUrl = URL1;
-        String titleUrl = URL2;
-        String singerUrl = URL3;
+    public Chart(String chartUrl, String titleUrl, String singerUrl) {
         
         Document doc = null;
         
@@ -40,6 +36,7 @@ public class Chart {
         for(Element b : rank_list_name) {
             listName.add(b.text());
         }
+        
     }
 
     public ArrayList<String> getListTitle() {

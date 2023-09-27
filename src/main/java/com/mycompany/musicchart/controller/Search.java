@@ -13,12 +13,13 @@ import com.mycompany.musicchart.model.Chart;
 public class Search {
     
     public static Object[][] MusicSearch(Object[][] rowData,String str1, String str2,Chart rg) {
+        
         int j = 0;
         if(str1.isEmpty() == false){
             if(str2.isEmpty() == false) {
                 for(int i=0;i<rowData.length;i++){
                     if(rg.getListTitle().get(i).contains(str1)){
-                       int colnum = 0; 
+                       int colnum = 0;
                        rowData[j][colnum] = i+1;
                        rowData[j][++colnum] = rg.getListTitle().get(i);
                        rowData[j][++colnum] = rg.getListName().get(i);

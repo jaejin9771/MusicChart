@@ -9,13 +9,12 @@ package com.mycompany.musicchart.view;
  * @author baejaejin
  */
 public class Menu extends javax.swing.JFrame {
-    MainMenu a;
+    MainMenu a = new MainMenu();
     /**
      * Creates new form Menu
      */
     public Menu() {
         initComponents();
-        a = new MainMenu();
     }
 
     /**
@@ -60,9 +59,9 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(151, 151, 151)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnStart, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(btnEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnStart, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(btnEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1))
                 .addContainerGap(174, Short.MAX_VALUE))
         );
@@ -96,7 +95,7 @@ public class Menu extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public void runChart() {
+    public static void runChart() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -126,6 +125,7 @@ public class Menu extends javax.swing.JFrame {
                 new Menu().setVisible(true);
             }
         });
+//        setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
